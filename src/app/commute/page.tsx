@@ -50,8 +50,8 @@ export default function CommutePage() {
           <h1 className="text-2xl font-bold text-gray-800">Plan Your Journey</h1>
           <p className="text-gray-500 mb-6">Find the fastest and most affordable route</p>
 
-          <div className="space-y-4 relative">
-            <div>
+          <div className="flex flex-col items-center gap-2">
+            <div className='w-full'>
               <label className="text-sm font-medium text-gray-600">From</label>
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -65,12 +65,12 @@ export default function CommutePage() {
             <Button
               variant="outline"
               size="icon"
-              className="absolute right-4 top-1/2 bg-blue-100/80 border-blue-200 text-blue-600 rounded-full h-9 w-9"
+              className="bg-blue-100/80 border-blue-200 text-blue-600 rounded-full h-9 w-9 my-1"
             >
               <ArrowUpDown className="w-5 h-5" />
             </Button>
 
-            <div>
+            <div className='w-full'>
               <label className="text-sm font-medium text-gray-600">To</label>
                <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
