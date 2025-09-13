@@ -45,7 +45,16 @@ export default function CommutePage() {
 
   return (
     <div className="flex flex-col min-h-dvh bg-blue-50/50">
-      <main className="flex-1 space-y-4 pb-24">
+      <header className="fixed top-0 left-0 right-0 bg-white border-b p-4 flex items-center justify-between z-10">
+        <div className="flex items-center gap-3">
+          <Button variant="ghost" size="icon">
+            <ArrowLeft className="w-6 h-6" />
+          </Button>
+          <h2 className="text-lg font-bold">Smart Commute</h2>
+        </div>
+      </header>
+      
+      <main className="flex-1 space-y-4 pt-16 pb-24">
         <section className="bg-white p-6 pb-20">
           <h1 className="text-2xl font-bold text-gray-800">Plan Your Journey</h1>
           <p className="text-gray-500 mb-6">Find the fastest and most affordable route</p>
@@ -84,14 +93,6 @@ export default function CommutePage() {
         </section>
 
         <section className="bg-white rounded-t-3xl -mt-16 p-6 space-y-6 shadow-2xl shadow-gray-500/10">
-            <div className="flex items-center justify-between">
-                <Button variant="ghost" size="icon">
-                    <ArrowLeft className="w-6 h-6" />
-                </Button>
-                <h2 className="text-lg font-bold">Smart Commute</h2>
-                <div className="w-10"></div>
-            </div>
-
           <div>
             <h3 className="font-semibold text-gray-800 mb-3">Popular Destinations</h3>
             <div className="flex flex-wrap gap-2">
