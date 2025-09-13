@@ -27,7 +27,7 @@ export default function BottomNav() {
         <NavItem href="/" icon={Home} label="Home" />
         <NavItem href="/chat" icon={MessageCircle} label="Chat" />
         <NavItem href="/commute" icon={Bus} label="Commute" />
-        <NavItem href="#" icon={Calendar} label="Schedule" />
+        <NavItem href="/schedule" icon={Calendar} label="Schedule" />
       </div>
     </footer>
   );
