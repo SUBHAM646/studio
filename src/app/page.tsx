@@ -1,186 +1,182 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { AnimatePresence, motion } from "framer-motion";
-import { Send, LoaderCircle } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-
-import { handleGeneratePlan } from "./actions";
-import { Logo } from "@/components/icons";
-import { Button } from "@/components/ui/button";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-import { Textarea } from "@/components/ui/textarea";
-import { Card } from "@/components/ui/card";
-import WelcomeBanner from "@/components/dashboard/welcome-banner";
-import CommuteOptions from "@/components/dashboard/commute-options";
-import MealFinder from "@/components/dashboard/meal-finder";
-import ScheduleView from "@/components/dashboard/schedule-view";
-import LocalInfo from "@/components/dashboard/local-info";
-import LoadingSkeleton from "@/components/loading-skeleton";
-import DailyPlanDisplay from "@/components/daily-plan-display";
+  Car,
+  Heart,
+  MessageCircle,
+  Bus,
+  FileText,
+  LocateIcon,
+  Bot,
+  CookingPot,
+  Sparkles,
+  Search,
+  BookUser,
+  Info,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import BottomNav from "@/components/bottom-nav";
 
-const formSchema = z.object({
-  schedule: z
-    .string()
-    .min(20, "Please describe your schedule in a bit more detail."),
-  preferences: z
-    .string()
-    .min(20, "Please tell us more about your preferences."),
-});
+const FeatureCard = ({
+  icon,
+  title,
+  subtitle,
+  bgColor = "bg-white",
+}: {
+  icon: React.ElementType;
+  title: string;
+  subtitle: string;
+  bgColor?: string;
+}) => {
+  const Icon = icon;
+  return (
+    <Card className={`shadow-lg ${bgColor}`}>
+      <CardContent className="p-4 flex items-center gap-4">
+        <div className="p-3 bg-white rounded-lg">
+          <Icon className="w-6 h-6 text-primary" />
+        </div>
+        <div>
+          <h3 className="font-bold">{title}</h3>
+          <p className="text-sm text-gray-500">{subtitle}</p>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
-type FormValues = z.infer<typeof formSchema>;
+const AskMeCard = ({
+  icon,
+  text,
+  subtext,
+  bgColor,
+}: {
+  icon: React.ElementType;
+  text: string;
+  subtext: string;
+  bgColor: string;
+}) => {
+  const Icon = icon;
+  return (
+    <Card className={`${bgColor} bg-opacity-20 border-0`}>
+      <CardContent className="p-4">
+        <div className="flex items-start gap-3">
+          <div className={`p-2 rounded-lg ${bgColor} bg-opacity-30`}>
+            <Icon className="w-5 h-5 text-gray-800" />
+          </div>
+          <div>
+            <p className="font-semibold text-gray-800">&quot;{text}&quot;</p>
+            <p className="text-sm text-gray-600">{subtext}</p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
 
 export default function Home() {
-  const [plan, setPlan] = useState<string | null>(null);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const { toast } = useToast();
-
-  const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      schedule: "",
-      preferences: "",
-    },
-  });
-
-  const onSubmit = async (data: FormValues) => {
-    setIsGenerating(true);
-    setPlan(null);
-    const result = await handleGeneratePlan(data);
-    setIsGenerating(false);
-
-    if (result.dailyPlan) {
-      setPlan(result.dailyPlan);
-    } else {
-      console.error(result.error);
-      toast({
-        variant: "destructive",
-        title: "Oh no! Something went wrong.",
-        description: "There was a problem with generating your plan. Please try again.",
-      });
-    }
-  };
-
   return (
-    <div className="flex flex-col min-h-dvh bg-background">
-      <header className="p-4 border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container mx-auto flex items-center gap-2">
-          <Logo className="h-8 w-8 text-primary" />
-          <h1 className="text-2xl font-bold text-foreground font-headline">
-            Namma Mitra
+    <div className="flex flex-col min-h-dvh bg-gradient-to-b from-orange-50 to-rose-50">
+      <main className="flex-1 container mx-auto p-4 md:p-6 lg:p-8 space-y-8 pb-24">
+        <section className="text-center py-8">
+          <div className="inline-block p-4 bg-orange-200/50 rounded-full relative mb-4">
+            <div className="p-3 bg-white rounded-full">
+              <Bot className="w-10 h-10 text-orange-400" />
+            </div>
+            <Heart className="w-6 h-6 text-red-500 absolute bottom-2 right-1 bg-white rounded-full p-0.5" />
+          </div>
+          <h1 className="text-3xl font-bold text-gray-800">
+            Your Bengaluru Student Assistant
           </h1>
-        </div>
-      </header>
+          <p className="text-gray-600 mt-2 max-w-md mx-auto">
+            Beat traffic, save money, and manage your student life with
+            AI-powered daily planning
+          </p>
+        </section>
 
-      <main className="flex-1 container mx-auto p-4 md:p-6 lg:p-8 space-y-6">
-        <AnimatePresence mode="wait">
-          {isGenerating ? (
-            <motion.div
-              key="loading"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <LoadingSkeleton />
-            </motion.div>
-          ) : plan ? (
-            <motion.div
-              key="plan"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <DailyPlanDisplay plan={plan} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="dashboard"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="space-y-6"
-            >
-              <WelcomeBanner />
-              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <CommuteOptions />
-                <MealFinder />
-                <ScheduleView />
-                <LocalInfo />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </main>
-
-      <footer className="sticky bottom-0 mt-auto bg-background/80 backdrop-blur-sm border-t">
-        <div className="container mx-auto p-4">
-          <Card className="p-4">
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4"
-              >
-                <div className="grid md:grid-cols-2 gap-4">
-                  <FormField
-                    control={form.control}
-                    name="schedule"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Textarea
-                            placeholder="e.g., 'Class from 9am to 1pm at Jayanagar, then library until 5pm. Exam tomorrow.'"
-                            className="h-24 resize-none"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="preferences"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <Textarea
-                            placeholder="e.g., 'I prefer South Indian food, budget for lunch is 100 Rs. I like to read in the evening.'"
-                            className="h-24 resize-none"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
-                <div className="flex justify-end">
-                  <Button
-                    type="submit"
-                    disabled={isGenerating}
-                    className="w-full md:w-auto"
-                  >
-                    {isGenerating ? (
-                      <LoaderCircle className="animate-spin" />
-                    ) : (
-                      <Send />
-                    )}
-                    <span className="ml-2">Generate My Plan</span>
-                  </Button>
-                </div>
-              </form>
-            </Form>
+        <section>
+          <Card className="bg-gradient-to-br from-orange-500 to-red-500 p-6 rounded-2xl text-center text-white shadow-xl">
+            <MessageCircle className="w-8 h-8 mx-auto mb-2 bg-white/30 p-1.5 rounded-lg" />
+            <h2 className="text-xl font-bold">Start Chatting</h2>
+            <p className="text-sm">
+              Ask me anything about your day in Bengaluru!
+            </p>
           </Card>
+        </section>
+
+        <section className="grid grid-cols-2 gap-4">
+          <Card>
+            <CardContent className="p-4 text-center">
+              <div className="p-2 inline-block bg-blue-100 rounded-lg">
+                <Bus className="w-6 h-6 text-blue-500" />
+              </div>
+              <h3 className="font-bold mt-2">Smart Commute</h3>
+              <p className="text-sm text-gray-500">Best routes & transport</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardContent className="p-4 text-center">
+              <div className="p-2 inline-block bg-green-100 rounded-lg">
+                <CookingPot className="w-6 h-6 text-green-500" />
+              </div>
+              <h3 className="font-bold mt-2">Budget Meals</h3>
+              <p className="text-sm text-gray-500">Affordable food options</p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-bold text-gray-800">How I Help You</h2>
+          <FeatureCard
+            icon={Sparkles}
+            title="Natural Conversations"
+            subtitle="Chat naturally about your day"
+            bgColor="bg-orange-100/50"
+          />
+        </section>
+
+        {/* This is a placeholder section. The original image has a nav bar here. */}
+        <div className="flex justify-between items-center py-4">
+           <h2 className="text-2xl font-bold text-primary" style={{fontFamily: "'Pacifico', cursive"}}>Namma Mitra</h2>
+           <Button variant="ghost" size="icon">
+              <Info className="h-6 w-6" />
+            </Button>
         </div>
-      </footer>
+
+
+        <section className="space-y-4">
+            <FeatureCard icon={FileText} title="Budget Management" subtitle="Find affordable options" />
+            <FeatureCard icon={LocateIcon} title="Local Context" subtitle="Bengaluru-specific insights" />
+        </section>
+
+        <section className="space-y-4">
+          <h2 className="text-xl font-bold text-gray-800">Try Asking Me</h2>
+          <AskMeCard
+            icon={Search}
+            text="Plan my commute to MG Road"
+            subtext="Get fastest routes with cost comparison"
+            bgColor="bg-orange-200"
+          />
+          <AskMeCard
+            icon={Search}
+            text="Suggest dinner under ₹100"
+            subtext="Find nearby affordable eateries"
+            bgColor="bg-green-200"
+          />
+          <AskMeCard
+            icon={Search}
+            text="Plan my day tomorrow"
+            subtext="Complete schedule with reminders"
+            bgColor="bg-blue-200"
+          />
+        </section>
+
+        <footer className="text-center text-gray-500 text-sm py-4">
+            Designed by <span className="font-bold text-purple-600">▲ Readdy</span>
+        </footer>
+
+      </main>
+      <BottomNav />
     </div>
   );
 }
