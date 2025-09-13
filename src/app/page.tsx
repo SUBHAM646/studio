@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import {
   Car,
   Heart,
@@ -95,13 +96,15 @@ export default function Home() {
         </section>
 
         <section>
-          <Card className="bg-gradient-to-br from-orange-500 to-red-500 p-6 rounded-2xl text-center text-white shadow-xl">
-            <MessageCircle className="w-8 h-8 mx-auto mb-2 bg-white/30 p-1.5 rounded-lg" />
-            <h2 className="text-xl font-bold">Start Chatting</h2>
-            <p className="text-sm">
-              Ask me anything about your day in Bengaluru!
-            </p>
-          </Card>
+          <Link href="/chat">
+            <Card className="bg-gradient-to-br from-orange-500 to-red-500 p-6 rounded-2xl text-center text-white shadow-xl">
+              <MessageCircle className="w-8 h-8 mx-auto mb-2 bg-white/30 p-1.5 rounded-lg" />
+              <h2 className="text-xl font-bold">Start Chatting</h2>
+              <p className="text-sm">
+                Ask me anything about your day in Bengaluru!
+              </p>
+            </Card>
+          </Link>
         </section>
 
         <section className="grid grid-cols-2 gap-4">
