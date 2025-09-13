@@ -2,14 +2,12 @@
 'use client';
 
 import {
+  ArrowLeft,
   Bell,
   Book,
-  Bot,
-  ChevronLeft,
   Cloud,
   FlaskConical,
   GraduationCap,
-  Heart,
   Lightbulb,
   Plus,
   Users,
@@ -117,7 +115,15 @@ export default function SchedulePage() {
       ];
   return (
     <div className="flex flex-col min-h-dvh bg-gray-50">
-      <main className="flex-1 space-y-6 pb-24 p-4">
+       <header className="fixed top-0 left-0 right-0 bg-white border-b p-4 flex items-center justify-between z-10">
+        <div className="flex items-center gap-3">
+          <Button variant="ghost" size="icon">
+            <ArrowLeft className="w-6 h-6" />
+          </Button>
+          <h2 className="text-lg font-bold">My Schedule</h2>
+        </div>
+      </header>
+      <main className="flex-1 space-y-6 pt-20 pb-24 p-4">
         <header className="flex justify-between items-start">
           <div>
             <h1 className="text-xl font-bold text-gray-800">
