@@ -71,7 +71,7 @@ const AskMeCard = ({
           <div className={`p-2 rounded-lg ${iconBgColor}`}>
             <Icon className={`w-5 h-5 ${iconColor}`} />
           </div>
-          <div>
+          <div className="flex-1">
             <p className="font-semibold text-gray-800">&quot;{text}&quot;</p>
             <p className="text-sm text-gray-600">{subtext}</p>
           </div>
