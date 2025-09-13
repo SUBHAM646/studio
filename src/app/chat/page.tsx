@@ -82,7 +82,7 @@ export default function ChatPage() {
         </Button>
       </header>
 
-      <main className="flex-1 pt-20 pb-44 px-4 space-y-6">
+      <main className="flex-1 pt-20 pb-44 px-4 space-y-6 overflow-y-auto">
         {messages.map((msg) => (
           <div key={msg.id} className="flex flex-col items-start gap-2">
             <div className="bg-gray-100 rounded-xl p-4 max-w-sm">
@@ -105,7 +105,7 @@ export default function ChatPage() {
         </div>
       </main>
 
-      <div className="fixed bottom-16 left-0 right-0 bg-white p-4 space-y-4">
+      <div className="fixed bottom-16 left-0 right-0 bg-white p-4 space-y-4 border-t">
         <div className="grid grid-cols-2 gap-3">
           <SuggestionChip
             icon={Bus}
@@ -117,7 +117,7 @@ export default function ChatPage() {
           <SuggestionChip
             icon={Utensils}
             text="Find food"
-            color="#E4F8E_D"
+            color="#E4F8ED"
             textColor="text-green-600"
             borderColor="border-green-200"
           />
@@ -153,7 +153,7 @@ export default function ChatPage() {
         </div>
       </div>
 
-      <footer className="text-center text-gray-500 text-sm py-4">
+      <footer className="text-center text-gray-500 text-sm py-4 fixed bottom-0 left-0 right-0 bg-white z-20">
             Designed by <span className="font-bold text-purple-600">▲ Readdy</span>
         </footer>
 
