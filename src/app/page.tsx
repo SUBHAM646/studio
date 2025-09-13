@@ -78,7 +78,7 @@ const AskMeCard = ({
 export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-gradient-to-b from-orange-50 to-rose-50">
-      <header className="flex justify-between items-center p-4">
+      <header className="sticky top-0 z-10 flex justify-between items-center p-4 bg-white/80 backdrop-blur-sm border-b border-gray-200/80">
         <h1 className="text-2xl font-bold text-primary">Namma Mitra</h1>
         <Button variant="ghost" size="icon">
           <Info className="h-6 w-6" />
@@ -170,10 +170,6 @@ export default function Home() {
             bgColor="bg-blue-200"
           />
         </section>
-
-        <footer className="text-center text-gray-500 text-sm py-4">
-            Designed by <span className="font-bold text-purple-600">▲ Readdy</span>
-        </footer>
 
       </main>
       <BottomNav />
