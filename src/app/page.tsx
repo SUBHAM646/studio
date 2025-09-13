@@ -78,6 +78,12 @@ const AskMeCard = ({
 export default function Home() {
   return (
     <div className="flex flex-col min-h-dvh bg-gradient-to-b from-orange-50 to-rose-50">
+      <header className="flex justify-between items-center p-4">
+        <h1 className="text-2xl font-bold text-primary">Namma Mitra</h1>
+        <Button variant="ghost" size="icon">
+          <Info className="h-6 w-6" />
+        </Button>
+      </header>
       <main className="flex-1 container mx-auto p-4 md:p-6 lg:p-8 space-y-8 pb-24">
         <section className="text-center py-8">
           <div className="inline-block p-4 bg-orange-200/50 rounded-full relative mb-4">
@@ -137,15 +143,6 @@ export default function Home() {
             bgColor="bg-orange-100/50"
           />
         </section>
-
-        {/* This is a placeholder section. The original image has a nav bar here. */}
-        <div className="flex justify-between items-center py-4">
-           <h2 className="text-2xl font-bold text-primary" style={{fontFamily: "'Pacifico', cursive"}}>Namma Mitra</h2>
-           <Button variant="ghost" size="icon">
-              <Info className="h-6 w-6" />
-            </Button>
-        </div>
-
 
         <section className="space-y-4">
             <FeatureCard icon={FileText} title="Budget Management" subtitle="Find affordable options" />
