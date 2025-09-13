@@ -122,6 +122,9 @@ export default function SchedulePage() {
           </Button>
           <h2 className="text-lg font-bold">My Schedule</h2>
         </div>
+        <Button variant="ghost" size="icon">
+          <Plus className="w-6 h-6" />
+        </Button>
       </header>
       <main className="flex-1 space-y-6 pt-20 pb-24 p-4">
         <header className="flex justify-between items-start">
