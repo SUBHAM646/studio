@@ -15,6 +15,7 @@ import {
   Search,
   BookUser,
   Info,
+  MessageSquareQuote,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -52,19 +53,23 @@ const AskMeCard = ({
   text,
   subtext,
   bgColor,
+  iconBgColor,
+  iconColor,
 }: {
   icon: React.ElementType;
   text: string;
   subtext: string;
   bgColor: string;
+  iconBgColor: string;
+  iconColor: string;
 }) => {
   const Icon = icon;
   return (
-    <Card className={`${bgColor} bg-opacity-20 border-0`}>
+    <Card className={`${bgColor} border-0 shadow-sm`}>
       <CardContent className="p-4">
         <div className="flex items-start gap-3">
-          <div className={`p-2 rounded-lg ${bgColor} bg-opacity-30`}>
-            <Icon className="w-5 h-5 text-gray-800" />
+          <div className={`p-2 rounded-lg ${iconBgColor}`}>
+            <Icon className={`w-5 h-5 ${iconColor}`} />
           </div>
           <div>
             <p className="font-semibold text-gray-800">&quot;{text}&quot;</p>
@@ -154,22 +159,28 @@ export default function Home() {
           <h2 className="text-xl font-bold text-gray-800 mb-4 px-2">Try Asking Me</h2>
           <div className="space-y-3">
             <AskMeCard
-              icon={Search}
+              icon={MessageSquareQuote}
               text="Plan my commute to MG Road"
               subtext="Get fastest routes with cost comparison"
-              bgColor="bg-orange-200"
+              bgColor="bg-orange-100/50"
+              iconBgColor="bg-orange-200"
+              iconColor="text-orange-600"
             />
             <AskMeCard
-              icon={Search}
+              icon={MessageSquareQuote}
               text="Suggest dinner under ₹100"
               subtext="Find nearby affordable eateries"
-              bgColor="bg-green-200"
+              bgColor="bg-green-100/50"
+              iconBgColor="bg-green-200"
+              iconColor="text-green-600"
             />
             <AskMeCard
-              icon={Search}
+              icon={MessageSquareQuote}
               text="Plan my day tomorrow"
               subtext="Complete schedule with reminders"
-              bgColor="bg-blue-200"
+              bgColor="bg-blue-100/50"
+              iconBgColor="bg-blue-200"
+              iconColor="text-blue-600"
             />
           </div>
         </section>
