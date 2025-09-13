@@ -26,7 +26,7 @@ export default function BottomNav() {
       <div className="container mx-auto h-16 flex justify-around items-center">
         <NavItem href="/" icon={Home} label="Home" />
         <NavItem href="/chat" icon={MessageCircle} label="Chat" />
-        <NavItem href="#" icon={Bus} label="Commute" />
+        <NavItem href="/commute" icon={Bus} label="Commute" />
         <NavItem href="#" icon={Calendar} label="Schedule" />
       </div>
     </footer>
