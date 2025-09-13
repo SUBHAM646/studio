@@ -90,7 +90,7 @@ export default function Home() {
           <Info className="h-6 w-6" />
         </Button>
       </header>
-      <main className="flex-1 container mx-auto p-4 md:p-6 lg:p-8 space-y-8 pb-24">
+      <main className="flex-1 container mx-auto p-4 md:p-6 lg:p-8 space-y-8 pb-28">
         <section className="text-center py-8">
           <div className="inline-block p-4 bg-orange-200/50 rounded-full relative mb-4">
             <div className="p-3 bg-white rounded-full">
