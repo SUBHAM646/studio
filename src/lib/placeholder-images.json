@@ -1,3 +1,28 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "meal-1",
+      "description": "A traditional South Indian thali with various bowls.",
+      "imageUrl": "https://picsum.photos/seed/meal1/400/300",
+      "imageHint": "indian food"
+    },
+    {
+      "id": "meal-2",
+      "description": "A bowl of steaming hot noodles, garnished with vegetables.",
+      "imageUrl": "https://picsum.photos/seed/meal2/400/300",
+      "imageHint": "noodles bowl"
+    },
+    {
+      "id": "meal-3",
+      "description": "A delicious slice of cheese pizza.",
+      "imageUrl": "https://picsum.photos/seed/meal3/400/300",
+      "imageHint": "pizza slice"
+    },
+    {
+      "id": "meal-4",
+      "description": "Crispy and golden-brown masala dosa.",
+      "imageUrl": "https://picsum.photos/seed/meal4/400/300",
+      "imageHint": "masala dosa"
+    }
+  ]
 }
