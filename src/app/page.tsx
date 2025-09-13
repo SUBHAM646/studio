@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -150,25 +151,29 @@ export default function Home() {
         </section>
 
         <section className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-800">Try Asking Me</h2>
-          <AskMeCard
-            icon={Search}
-            text="Plan my commute to MG Road"
-            subtext="Get fastest routes with cost comparison"
-            bgColor="bg-orange-200"
-          />
-          <AskMeCard
-            icon={Search}
-            text="Suggest dinner under ₹100"
-            subtext="Find nearby affordable eateries"
-            bgColor="bg-green-200"
-          />
-          <AskMeCard
-            icon={Search}
-            text="Plan my day tomorrow"
-            subtext="Complete schedule with reminders"
-            bgColor="bg-blue-200"
-          />
+          <Card className="p-4 bg-white/60">
+            <h2 className="text-xl font-bold text-gray-800 mb-4 px-2">Try Asking Me</h2>
+            <div className="space-y-3">
+              <AskMeCard
+                icon={Search}
+                text="Plan my commute to MG Road"
+                subtext="Get fastest routes with cost comparison"
+                bgColor="bg-orange-200"
+              />
+              <AskMeCard
+                icon={Search}
+                text="Suggest dinner under ₹100"
+                subtext="Find nearby affordable eateries"
+                bgColor="bg-green-200"
+              />
+              <AskMeCard
+                icon={Search}
+                text="Plan my day tomorrow"
+                subtext="Complete schedule with reminders"
+                bgColor="bg-blue-200"
+              />
+            </div>
+          </Card>
         </section>
 
       </main>
