@@ -117,9 +117,6 @@ export default function CommutePage() {
               ))}
             </ul>
           </div>
-            <footer className="text-center text-gray-500 text-sm py-4">
-                Designed by <span className="font-bold text-purple-600">▲ Readdy</span>
-            </footer>
         </section>
       </main>
 
