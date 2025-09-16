@@ -1,6 +1,8 @@
 
 "use client";
 
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   Car,
@@ -82,13 +84,52 @@ const AskMeCard = ({
 };
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check if user is authenticated (you can implement your own auth logic here)
+    const isAuthenticated = localStorage.getItem('isAuthenticated');
+    
+    if (!isAuthenticated) {
+      // Redirect to auth page if not authenticated
+      router.push('/auth');
+    }
+  }, [router]);
+
+  // Check authentication status
+  const isAuthenticated = typeof window !== 'undefined' ? localStorage.getItem('isAuthenticated') : null;
+  
+  // Show loading or redirect if not authenticated
+  if (typeof window !== 'undefined' && !isAuthenticated) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-orange-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Redirecting to login...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col min-h-dvh bg-gradient-to-b from-orange-50 to-rose-50 no-scrollbar">
       <header className="sticky top-0 z-10 flex justify-between items-center p-4 bg-white/80 backdrop-blur-sm border-b border-gray-200/80">
         <h1 className="text-2xl font-bold text-primary">Namma Mitra</h1>
-        <Button variant="ghost" size="icon">
-          <Info className="h-6 w-6" />
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={() => {
+              localStorage.removeItem('isAuthenticated');
+              router.push('/auth');
+            }}
+          >
+            Logout
+          </Button>
+          <Button variant="ghost" size="icon">
+            <Info className="h-6 w-6" />
+          </Button>
+        </div>
       </header>
       <main className="flex-1 container mx-auto p-4 md:p-6 lg:p-8 space-y-8 pb-28">
         <section className="text-center py-8">
